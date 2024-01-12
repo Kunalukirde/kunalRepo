@@ -11,7 +11,7 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 
-app.use(express.static('../XceltecCrudTask'));
+// app.use(express.static('../XceltecCrudTask'));
 
 // MongoDB connection
 mongoose.connect('mongodb+srv://kunalukirde01:kunalukirde@cluster0.ffcff6b.mongodb.net/?retryWrites=true&w=majority');
@@ -20,6 +20,9 @@ mongoose.connect('mongodb+srv://kunalukirde01:kunalukirde@cluster0.ffcff6b.mongo
 
 
 // Routes
+app.use('/' , (req,res) => {
+  res.status(200).send({ 'message ' : 'You Are Live On Server'});
+})
 app.use('/api/auth', authRoutes);
 app.use('/api/audio', audioRoutes);
 // Serve uploaded audio files statically
